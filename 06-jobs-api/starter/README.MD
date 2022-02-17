@@ -1,3 +1,7 @@
+### Highlight
+* MongoDB unique field
+* Hash password in mongoose middleware
+
 #### Setup
 
 ```bash

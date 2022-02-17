@@ -6,8 +6,8 @@ const products = require("./routes/products");
 
 const notFoundMiddleware = require("./middleware/not-found");
 const errorMiddleware = require("./middleware/error-handler");
-const { application } = require('express');
 
+const app = express();
 app.use(express.json());
 app.get("/", (req, res) => {
     res.send("OK")

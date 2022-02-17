@@ -1,6 +1,14 @@
 ### Highlight
 * MongoDB unique field
 * Hash password in mongoose middleware
+* Foreign key in job reference user
+* Nested destructuring to keep id clear
+* Format user friendly error message
+* Security feature when deploying app:
+  - `helmet`: set various http header to prevent attack
+  - `cors`: accessible from different domain (cross origin resource sharing)
+  - `xss-clean`: sanitize user input, prevent cross site scripting attack
+  - `express-rate-limit`: prevent DDOS
 
 #### Setup
 

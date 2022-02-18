@@ -79,3 +79,30 @@ Swagger UI
       required: true
       description: the job id
 ```
+
+### Heroku
+```bash
+heroku login
+
+# create new app (globally unique)
+heroku create job-api-shaw
+git remote -v
+
+# set env var
+heroku config:set JWT_TTL=1d
+
+# deploy
+git push heroku master
+
+# clone from existing heroku app
+# must np install and setup .env manually
+heroku git:clone -a jobs-api-06
+```
+
+### Documentation
+1. Export JSON from Postman
+2. Import JSON to APIMAtic. Adjust group/folder.
+3. Export API yaml documentation
+4. Load yaml into Swagger Editor. Edit yaml.
+5. Save yaml to root dir.
+6. Use `swagger-ui-express` and `yamljs` to setup API path.

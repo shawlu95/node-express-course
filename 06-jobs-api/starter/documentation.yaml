@@ -1,0 +1,227 @@
+openapi: 3.0.0
+info:
+  title: Jobs API
+  contact: {}
+  version: '1.0'
+servers:
+- url: https://job-api-shaw.herokuapp.com/api/v1
+  variables: {}
+paths:
+  /auth/register:
+    post:
+      tags:
+      - Auth
+      summary: Register
+      operationId: Register
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+            example:
+              name: ava
+              email: ava@gmail.com
+              password: '6789'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /auth/login:
+    post:
+      tags:
+      - Auth
+      summary: Login
+      operationId: Login
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+            example:
+              name: shaw
+              email: shawlu95@gmail.com
+              password: '1234'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /jobs:
+    post:
+      tags:
+      - Jobs
+      summary: Post Job
+      operationId: PostJob
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostJobRequest'
+            example:
+              company: Wag
+              position: Dog walker
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    get:
+      tags:
+      - Jobs
+      summary: Get Jobs
+      operationId: GetJobs
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /jobs/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: The job ID
+    get:
+      tags:
+      - Jobs
+      summary: Get Job
+      operationId: GetJob
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    patch:
+      tags:
+      - Jobs
+      summary: Patch Job
+      operationId: PatchJob
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchJobRequest'
+            example:
+              company: coupang
+              position: ranking engineer
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    delete:
+      tags:
+      - Jobs
+      summary: Delete Job
+      operationId: DeleteJob
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+components:
+  schemas:
+    RegisterRequest:
+      title: RegisterRequest
+      required:
+      - name
+      - email
+      - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        name: ava
+        email: ava@gmail.com
+        password: '6789'
+    LoginRequest:
+      title: LoginRequest
+      required:
+      - name
+      - email
+      - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        name: shaw
+        email: shawlu95@gmail.com
+        password: '1234'
+    PostJobRequest:
+      title: PostJobRequest
+      required:
+      - company
+      - position
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+      example:
+        company: Wag
+        position: Dog walker
+    PatchJobRequest:
+      title: PatchJobRequest
+      required:
+      - company
+      - position
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+      example:
+        company: coupang
+        position: ranking engineer
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+- name: Auth
+  description: ''
+- name: Jobs
+  description: ''

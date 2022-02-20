@@ -1,5 +1,6 @@
 import { useState } from 'react';
-const rootUrl = 'http://localhost:5000';
+// const rootUrl = 'http://localhost:8080';
+const rootUrl = ''; // set proxy in package.json
 
 function App() {
   const [email, setEmail] = useState('');

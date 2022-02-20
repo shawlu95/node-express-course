@@ -46,6 +46,10 @@ app.use(cookieParser(process.env.JWT_SECRET));
 app.use(express.static('./public'));
 app.use(fileUpload());
 
+app.get('/api/v1', (req, res) => {
+  console.log(req.cookies, req.signedCookies);
+  res.send("ok");
+})
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/products', productRouter);
@@ -55,7 +59,7 @@ app.use('/api/v1/orders', orderRouter);
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 const start = async () => {
   try {
     await connectDB(process.env.MONGO_URL);

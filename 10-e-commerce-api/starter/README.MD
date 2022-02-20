@@ -2,26 +2,36 @@
 
 [E-Commerce API Heroku URL](https://e-commerce-api-10.herokuapp.com/)
 
+### Note
+* Set jwt in cookie `res.cookie`. Get cookie use `cookie-parser` middleware
+  - literally don't need to do anything front end (browser picks cookie up and send back to browser)
+  - if client tampers with cookie, reject request (use `secure: true`)
+  - max size: 4096 byte
+* If react app is hosted on different domain/port
+  - use `cors` package in server app
+  - in react app, set a proxy in `package.json`, every request will use url excluding the domain e.g. `/api/v1/`
+  - if deploying on netlify, need to create a `_redirects` file
+
 #### Setup Basic Express Server
 
-- [] import express and assign to variable
-- [] setup start port variable (5000) and start function
+- [x] import express and assign to variable
+- [x] setup start port variable (5000) and start function
 
 #### Connect To DB
 
-- [] get connection string
-- [] setup .env with MONGO_URL variable and assign the value
-- [] import 'dotenv' and setup package
-- [] import connect() and invoke in the starter
-- [] restart the server
-- [] mongoose V6 info
+- [x] get connection string
+- [x] setup .env with MONGO_URI variable and assign the value
+- [x] import 'dotenv' and setup package
+- [x] import connect() and invoke in the starter
+- [x] restart the server
+- [x] mongoose V6 info
 
 #### Basic Routes and Middleware
 
-- [] setup / GET Route
-- [] setup express.json() middleware
-- [] setup 404 and errorHandler middleware
-- [] import 'exress-async-errors' package
+- [x] setup / GET Route
+- [x] setup express.json() middleware
+- [x] setup 404 and errorHandler middleware
+- [x] import 'exress-async-errors' package
 
 #### 404 vs ErrorHandler Middleware
 
@@ -31,9 +41,9 @@
 
 #### User Model
 
-- [] create models folder and User.js file
-- [] create schema with name,email, password (all type:String)
-- [] export mongoose model
+- [x] create models folder and User.js file
+- [x] create schema with name,email, password (all type:String)
+- [x] export mongoose model
 
 #### Validator Package
 
@@ -41,48 +51,49 @@
 
 #### Auth Routes Structure
 
-- [] create controllers folder
-- [] add authController file
-- [] export (register,login,logout) functions
-- [] res.send('some string value')
-- [] create routes folder
-- [] setup authRoutes file
-- [] import all controllers
-- [] setup three routes
-- [] post('/register') post('/login') get('/logout')
-- [] import authRoutes as authRouter in the app.js
-- [] setup app.use('/api/v1/auth', authRouter)
+- [x] create controllers folder
+- [x] add authController file
+- [x] export (register,login,logout) functions
+- [x] res.send('some string value')
+- [x] create routes folder
+- [x] setup authRoutes file
+- [x] import all controllers
+- [x] setup three routes
+- [x] post('/register') post('/login') get('/logout')
+- [x] import authRoutes as authRouter in the app.js
+- [x] setup app.use('/api/v1/auth', authRouter)
 
 #### Test Routes in Postman
+- [x] Create separate environment for dev
 
 #### Register Controller
 
-- [] create user
-- [] send response with entire user (only while testing)
-- [] check if email already in use (schema and controller)
-- [] ignore 'role'
-- [] alternative 'admin' setup
+- [x] create user
+- [x] send response with entire user (only while testing)
+- [x] check if email already in use (schema and controller)
+- [x] ignore 'role'
+- [x] alternative 'admin' setup
 
 #### Handle Password
 
-- [] UserSchema.pre('save') - hook
+- [x] UserSchema.pre('save') - hook
 - this points to User
 - bcrypt.genSalt - number of rounds
 - bcrypt.hash
 
 #### JWT
 
-- [] require 'jsonwebtoken' package
-- [] create jwt - jwt.sign(payload,secret,options)
-- [] verify jwt - jwt.verify(token,secret)
-- [] add variables in .env JWT_SECRET=jwtSecret and JWT_LIFETIME=1d
-- [] restart the server !!!!
-- [] refactor code, create jwt functions in utils
-- [] refactor cookie code
-- [] setup func attachCookiesToResponse
-- [] accept payload(res, tokenUser)
-- [] create token, setup cookie
-- [] optionally send back the response
+- [x] require 'jsonwebtoken' package
+- [x] create jwt - jwt.sign(payload,secret,options)
+- [x] verify jwt - jwt.verify(token,secret)
+- [x] add variables in .env JWT_SECRET=jwtSecret and JWT_LIFETIME=1d
+- [x] restart the server !!!!
+- [x] refactor code, create jwt functions in utils
+- [x] refactor cookie code
+- [x] setup func attachCookiesToResponse
+- [x] accept payload(res, tokenUser)
+- [x] create token, setup cookie
+- [x] optionally send back the response
 
 #### Login Route
 

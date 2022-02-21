@@ -1,7 +1,7 @@
 const User = require('../models/User');
 const { StatusCodes } = require('http-status-codes');
 const CustomError = require('../errors');
-const { attachCookies } = require('../utils');
+const { attachCookies, createTokenUser } = require('../utils');
 
 const register = async (req, res) => {
   const { email, name, password } = req.body;
@@ -16,8 +16,8 @@ const register = async (req, res) => {
 
   // user cannot just set role in json body
   const user = await User.create({ name, email, password, role });
-  const tokenUser = { name: user.name, userId: user._id, role: user.role };
-  attachCookies({ res, user });
+  const tokenUser = createTokenUser(user);
+  attachCookies({ res, user: tokenUser });
   res.status(StatusCodes.CREATED).json({ user: tokenUser });
 };
 
@@ -34,13 +34,12 @@ const login = async (req, res) => {
     throw new CustomError.BadRequestError("Invalid credential");
   }
 
-  const tokenUser = { name: user.name, userId: user._id, role: user.role };
+  const tokenUser = createTokenUser(user);
   attachCookies({ res, user: tokenUser });
   res.status(StatusCodes.OK).json({ user: tokenUser });
 };
 
 const logout = async (req, res) => {
-  console.log('logout')
   res.cookie('token', 'logout', {
     httpOnly: true,
     expires: new Date(Date.now() + 5 * 1000)

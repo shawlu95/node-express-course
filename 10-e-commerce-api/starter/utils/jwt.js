@@ -11,7 +11,6 @@ const createJWT = ({ payload }) => {
 const attachCookies = ({ res, user }) => {
   const token = createJWT({ payload: user });
   const oneDay = 24 * 60 * 60 * 1000;
-  console.log('attach token', token);
   res.cookie('token', token, {
     expire: new Date(Date.now() + oneDay),
     httpOnly: true,
@@ -20,6 +19,6 @@ const attachCookies = ({ res, user }) => {
   });
 }
 
-const isTokenValid = ({ token }) => jwt.verify(token, process.env.JWT_SECRET);
+const isTokenValid = (token) => jwt.verify(token, process.env.JWT_SECRET);
 
 module.exports = { createJWT, isTokenValid, attachCookies };

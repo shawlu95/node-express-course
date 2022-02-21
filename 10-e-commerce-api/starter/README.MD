@@ -11,6 +11,14 @@
   - use `cors` package in server app
   - in react app, set a proxy in `package.json`, every request will use url excluding the domain e.g. `/api/v1/`
   - if deploying on netlify, need to create a `_redirects` file
+* Use `populate` to retrieve foreign key's reference
+  - example: get user, product for review
+* Use mongoose virtual to retrive non-exist foreign key
+  - only exists logically
+  - example: get list of review for products
+  - cannot query virtual field (filter is possible)
+* Pre-remove hook: remove all reviews when product is removed
+
 
 #### Setup Basic Express Server
 
@@ -97,33 +105,33 @@
 
 #### Login Route
 
-- [] check if email and password exist, if one missing return 400
-- [] find user, if no user return 401
-- [] check password, if does not match return 401
-- [] if everything is correct, attach cookie
+- [x] check if email and password exist, if one missing return 400
+- [x] find user, if no user return 401
+- [x] check password, if does not match return 401
+- [x] if everything is correct, attach cookie
   and send back the same response as in register
 
 #### Logout Route
 
-- [] set token cookie equal to some string value
-- [] set expires:new Date(Date.now())
+- [x] set token cookie equal to some string value
+- [x] set expires:new Date(Date.now())
 
 #### User Routes Structure
 
-- [] add userController file
-- [] export (getAllUsers,getSingleUser,showCurrentUser,updateUser,updateUserPassword) functions
-- [] res.send('some string value')
-- [] setup userRoutes file
-- [] import all controllers
-- [] setup just one route - router.route('/').get(getAllUsers);
-- [] import userRoutes as userRouter in the app.js
-- [] setup app.use('/api/v1/users', userRouter)
+- [x] add userController file
+- [x] export (getAllUsers,getSingleUser,showCurrentUser,updateUser,updateUserPassword) functions
+- [x] res.send('some string value')
+- [x] setup userRoutes file
+- [x] import all controllers
+- [x] setup just one route - router.route('/').get(getAllUsers);
+- [x] import userRoutes as userRouter in the app.js
+- [x] setup app.use('/api/v1/users', userRouter)
 
 #### GetAllUsers and GetSingleUser
 
-- [] Get all users where role is 'user' and remove password
-- [] Get Single User where id matches id param and remove password
-- [] If no user 404
+- [x] Get all users where role is 'user' and remove password
+- [x] Get Single User where id matches id param and remove password
+- [x] If no user 404
 
 #### Authenticate User Setup
 
@@ -131,43 +139,43 @@
 
 #### Authorize Permissions Setup
 
-- [] hardcode
+- [x] hardcode
 
 #### Authorize Permissions Complete
 
-- [] introduce params
+- [x] introduce params
 
 #### ShowCurrentUser
 
-- [] get user from req
-- [] send response with user
+- [x] get user from req
+- [x] send response with user
 
 #### UpdateUserPassword
 
-- [] almost identical to login user
-- [] add authenticateUser middleware in the route
-- [] check for oldPassword and newPassword in the body
-- [] if one missing 400
-- [] look for user with req.user.userId
-- [] check if oldPassword matches with user.comparePassword
-- [] if no match 401
-- [] if everything good set user.password equal to newPassword
-- [] await user.save()
+- [x] almost identical to login user
+- [x] add authenticateUser middleware in the route
+- [x] check for oldPassword and newPassword in the body
+- [x] if one missing 400
+- [x] look for user with req.user.userId
+- [x] check if oldPassword matches with user.comparePassword
+- [x] if no match 401
+- [x] if everything good set user.password equal to newPassword
+- [x] await user.save()
 
 #### createTokenUser in Utils
 
-- [] create a file in utils (createTokenUser)
-- [] setup a function that accepts user object and returns userToken object
-- [] export as default
-- [] setup all the correct imports/exports and refactor existing code
+- [x] create a file in utils (createTokenUser)
+- [x] setup a function that accepts user object and returns userToken object
+- [x] export as default
+- [x] setup all the correct imports/exports and refactor existing code
 
 #### updateUser with User.findOneAndUpdate()
 
-- [] add authenticateUser middleware in the route
-- [] check for name and email in the body
-- [] if one is missing, send 400 (optional)
-- [] use findOneAndUpdate()
-- [] create token user, attachCookiesToResponse and send back the tokenUser
+- [x] add authenticateUser middleware in the route
+- [x] check for name and email in the body
+- [x] if one is missing, send 400 (optional)
+- [x] use findOneAndUpdate()
+- [x] create token user, attachCookiesToResponse and send back the tokenUser
 
 #### updateUser with user.save()
 
@@ -175,115 +183,115 @@
 
 #### Product Model
 
-- [] create Product.js in models folder
-- [] create Schema
-- [] name : {type:String}
-- [] price: {type:Number}
-- [] description: {type:String}
-- [] image: {type:String}
-- [] category: {type:String}
-- [] company: {type:String}
-- [] colors: {type:[]}
-- [] featured: {type:Boolean}
-- [] freeShipping: {type:Boolean}
-- [] inventory:{type:Number}
-- [] averageRating:{type:Number}
-- [] user
-- [] set timestamps
-- [] export Product model
+- [x] create Product.js in models folder
+- [x] create Schema
+- [x] name : {type:String}
+- [x] price: {type:Number}
+- [x] description: {type:String}
+- [x] image: {type:String}
+- [x] category: {type:String}
+- [x] company: {type:String}
+- [x] colors: {type:[]}
+- [x] featured: {type:Boolean}
+- [x] freeShipping: {type:Boolean}
+- [x] inventory:{type:Number}
+- [x] averageRating:{type:Number}
+- [x] user
+- [x] set timestamps
+- [x] export Product model
 
 #### Product Structure
 
-- [] add productController file in controllers
-- [] export (createProduct, getAllProducts,
-  getSingleProduct, updateProduct, deleteProduct, uploadImage) functions
-- [] res.send('function name')
-- [] setup productRoutes file in routes
-- [] import all controllers
-- [] only getAllProducts and getSingleProduct accessible to public
-- [] rest only by admin (setup middlewares)
-- [] typical setup
-- [] router.route('/uploadImage').post(uploadImage)
-- [] import productRoutes as productRouter in the app.js
-- [] setup app.use('/api/v1/products', productRouter)
+- [x] add productController file in controllers
+- [x] export (createProduct, getAllProducts,
+  gxetSingleProduct, updateProduct, deleteProduct, uploadImage) functions
+- [x] res.send('function name')
+- [x] setup productRoutes file in routes
+- [x] import all controllers
+- [x] only getAllProducts and getSingleProduct accessible to public
+- [x] rest only by admin (setup middlewares)
+- [x] typical setup
+- [x] router.route('/uploadImage').post(uploadImage)
+- [x] import productRoutes as productRouter in the app.js
+- [x] setup app.use('/api/v1/products', productRouter)
 
 #### Product Routes in Postman
 
 #### Create Product
 
-- [] create user property on req.body and set it equal to userId (req.user)
-- [] pass req.body into Product.create
-- [] send back the product
+- [x] create user property on req.body and set it equal to userId (req.user)
+- [x] pass req.body into Product.create
+- [x] send back the product
 
 #### Remaining Controllers (apart from uploadImage)
 
-- [] getAllProducts
-- [] getSingleProduct
-- [] updateProduct
-- [] deleteProduct
-- [] typical CRUD, utilize (task or job) project
-- [] remember we check already for role 'admin'
+- [x] getAllProducts
+- [x] getSingleProduct
+- [x] updateProduct
+- [x] deleteProduct
+- [x] typical CRUD, utilize (task or job) project
+- [x] remember we check already for role 'admin'
 
 #### Upload Image
 
-- [] if some question, re-watch 07-file-upload
-- [] images folder with two images
+- [x] if some question, re-watch 07-file-upload
+- [x] images folder with two images
 
 #### Review Model
 
-- [] create Review.js in models folder
-- [] create Schema
-- [] rating : {type:Number}
-- [] title: {type:String}
-- [] comment: {type:String}
-- [] user
-- [] product
-- [] set timestamps
-- [] export Review model
+- [x] create Review.js in models folder
+- [x] create Schema
+- [x] rating : {type:Number}
+- [x] title: {type:String}
+- [x] comment: {type:String}
+- [x] user
+- [x] product
+- [x] set timestamps
+- [x] export Review model
 
 #### Review Structure
 
-- [] add reviewController file in controllers
-- [] export (createReview, getAllReviews, getSingleReview, updateReview, deleteReview) functions
-- [] res.send('function name')
-- [] setup reviewRoutes file in routes
-- [] import all controllers
-- [] only getAllReviews and getSingleReview accessible to public
-- [] rest only to users (setup middleware)
-- [] typical REST setup
-- [] import reviewRoutes as reviewRouter in the app.js
-- [] setup app.use('/api/v1/reviews', reviewRouter)
+- [x] add reviewController file in controllers
+- [x] export (createReview, getAllReviews, getSingleReview, updateReview, deleteReview) functions
+- [x] res.send('function name')
+- [x] setup reviewRoutes file in routes
+- [x] import all controllers
+- [x] only getAllReviews and getSingleReview accessible to public
+- [x] rest only to users (setup middleware)
+- [x] typical REST setup
+- [x] import reviewRoutes as reviewRouter in the app.js
+- [x] setup app.use('/api/v1/reviews', reviewRouter)
 
 #### Create Review
 
-- [] check for product in the req.body
-- [] attach user property (set it equal to req.user.userId) on to req.body
-- [] create review
-- [] don't test yet
+- [x] check for product in the req.body
+- [x] attach user property (set it equal to req.user.userId) on to req.body
+- [x] create review
+- [x] don't test yet
 
 #### Get All Reviews and Get Single Review
 
-- [] both public routes, typical setup
+- [x] both public routes, typical setup
 
 #### Delete Review
 
-- [] get id from req.params
-- [] check if review exists
-- [] if no review, 404
-- [] check permissions (req.user, review.user)
-- [] use await review.remove()
-- [] send back 200
+- [x] get id from req.params
+- [x] check if review exists
+- [x] if no review, 404
+- [x] check permissions (req.user, review.user)
+- [x] use await review.remove()
+- [x] send back 200
 
 #### Update Review
 
-- [] get id from req.params
-- [] get {rating, title comment} from req.body
-- [] check if review exists
-- [] if no review, 404
-- [] check permissions
-- [] set review properties equal to rating, title, comment
-- [] use await review.save()
-- [] send back 200
+- [x] get id from req.params
+- [x] get {rating, title comment} from req.body
+- [x] check if review exists
+- [x] if no review, 404
+- [x] check permissions
+- [x] set review properties equal to rating, title, comment
+- [x] use await review.save()
+- [x] send back 200
 
 #### Populate
 

@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 const validator = require('validator');
 const { createJWT } = require('../utils');
 
@@ -33,9 +32,12 @@ const UserSchema = new mongoose.Schema({
 
 // this will always point to document
 // do not use arrow func
+// access modifield fields: this.modifiedPaths()
 UserSchema.pre('save', async function () {
-  const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt);
+  if (this.isModified('password')) {
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+  }
 });
 
 UserSchema.methods.comparePassword = async function (submitted) {
